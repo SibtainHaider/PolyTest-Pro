@@ -9,6 +9,7 @@ Feature: Login
 #    When I enter "user name" in "user name textbox"
 #    Then I click on the "login" button
 #    Then Search for "name_cred" in "login_btn"
-#    Then I should be successfully logged in with "name_user"
-     When User enter "test data" in "text box" on "locators"
-     Then User Click on "login" on "locators"
+
+    When User enter "test data" in "text box" on "locators"
+    Then User Click on "login" on "locators"
+    Then I should be successfully logged in with "name_user"

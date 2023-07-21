@@ -34,13 +34,14 @@ def browser_navigation(web_name):
 #     print(output)
 #
 #
-# @then(parsers.parse('I should be successfully logged in with "{test}"'))
-# def verification_login(test):
-#     time.sleep(10)
-#     verification = drivers.find_ele_xp('details', 'login_verification_text').text
-#     check = drivers.get_cred('details', test)
-#     methods.compare(check, verification)
-#     time.sleep(5)
+@then(parsers.parse('I should be successfully logged in with "{test}"'))
+def verification_login(test):
+    time.sleep(10)
+    verification = drivers.find_ele_xp('details', 'login_verification_text').text
+    check = drivers.get_cred('details', test)
+    methods.compare(check, verification)
+    time.sleep(5)
+
 
 @when(parsers.parse('User enter "{data}" in "{text_box}" on "{testfile}"'))
 def enter_credentials(data, text_box, testfile):
