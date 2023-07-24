@@ -1,6 +1,7 @@
-# Created by msibtain.haider at 24/07/2023
-Feature: # Enter feature name here
-  # Enter feature description here
+@dashboard
+Feature: Dashboard
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: User dashboard
+    Given User is on the "dashboard" page on "dashboard testFile"
+    Then User is verified with "name user" located on "testFile"
+    Then User Click on "time sheet" on "dashboard testFile"
