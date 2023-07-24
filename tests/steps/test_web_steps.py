@@ -1,6 +1,7 @@
 import time
 from pytest_bdd import scenario, given, when, then, parsers
 from tests import drivers, methods
+import allure
 
 
 @scenario('../features/webfeatures.feature', "Login with RO valid credentials")
@@ -16,6 +17,7 @@ def test_ess_dashboard():
 path1 = "C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/"
 
 
+@allure.severity(allure.severity_level.NORMAL)
 @given(parsers.parse('User is on the "{web_name}" page on "{testfile}"'))
 def browser_navigation(web_name, testfile):
     web_name_edit = web_name.replace(" ", ".")
@@ -47,7 +49,7 @@ def browser_navigation(web_name, testfile):
 #
 #
 
-
+@allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User is verified with "{test}" located on "{testfile}"'))
 def verification_login(test, testfile):
     time.sleep(10)
@@ -64,6 +66,7 @@ def verification_login(test, testfile):
     time.sleep(5)
 
 
+@allure.severity(allure.severity_level.NORMAL)
 @when(parsers.parse('User enter "{data}" in "{text_box}" on "{testfile}"'))
 def enter_credentials(data, text_box, testfile):
     data_edit = data.replace(" ", ".")
@@ -73,7 +76,7 @@ def enter_credentials(data, text_box, testfile):
     path3 = "testData/{}.properties".format(testfile_edit)
     user_data = drivers.get_data(path1 + path3, 'details', data_edit)
     path2 = "/Identifiers/{}.properties".format(testfile_edit)
-    box = drivers.get_data(path1+path2, 'details', text_box_edit)
+    box = drivers.get_data(path1 + path2, 'details', text_box_edit)
     box_path = methods.extract_variable(box, testfile_edit)
     box_update = box_path.replace('"', '').replace("\n", "")
     box_update_path = drivers.find_ele_xp(box_update)
@@ -81,6 +84,7 @@ def enter_credentials(data, text_box, testfile):
     methods.writer(user_data)
 
 
+@allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
 def logging_in(button_name, testfile):
     button_name_edit = button_name.replace(" ", ".")
