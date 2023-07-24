@@ -13,9 +13,9 @@ def get_data(file_name, heading, variable):
     config.read(file_name)
     return config.get(heading, variable)
 
-
-def url_browse(details, url):
-    driver.get(config1.get(details, url))
+#
+# def url_browse(details, url):
+#     driver.get(config1.get(details, url))
 
 
 def find_ele_xp(var):
@@ -24,3 +24,4 @@ def find_ele_xp(var):
 
 # def get_cred(heading, var):
 #     return config.get(heading, var)
+

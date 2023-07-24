@@ -23,3 +23,15 @@ def extract_variable(variable_name, file_name):
         line[0] = line[0].strip()
         if line[0] == variable_name:
             return line[1]
+
+
+def extraction_mod(data):
+    return data.replace('"', '').replace("\n", "")
+
+
+def file_mod(file_name):
+    return file_name.replace(" ", "")
+
+
+def data_mod(data):
+    return data.replace(" ", ".")
