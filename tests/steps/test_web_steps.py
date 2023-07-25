@@ -27,28 +27,6 @@ def browser_navigation(web_name, testfile):
     drivers.driver.get(url)
 
 
-# @when(parsers.parse('I enter "{user}" in "{box}"'))
-# def enter_credentials(user, box):
-#     # variable replace space with .
-#     element = drivers.find_ele_xp('details', box)
-#     methods.clicker(element)
-#     configure = drivers.get_cred('details', user)
-#     methods.writer(configure)
-#
-#
-# @then(parsers.parse('I click on the "{text}" button'))
-# def logging_in(text):
-#     element = drivers.find_ele_xp('details', text)
-#     methods.clicker(element)
-#
-#
-# @then(parsers.parse('Search for "{variable_name}" in "{file_name}"'))
-# def get_var_fromfile(variable_name, file_name):
-#     output = methods.extract_variable(variable_name, file_name)
-#     print(output)
-#
-#
-
 @allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User is verified with "{test}" located on "{testfile}"'))
 def verification_login(test, testfile):
@@ -96,3 +74,23 @@ def logging_in(button_name, testfile):
     box_update_path = drivers.find_ele_xp(box_update)
     methods.clicker(box_update_path)
     time.sleep(5)
+
+# @when(parsers.parse('I enter "{user}" in "{box}"'))
+# def enter_credentials(user, box):
+#     # variable replace space with .
+#     element = drivers.find_ele_xp('details', box)
+#     methods.clicker(element)
+#     configure = drivers.get_cred('details', user)
+#     methods.writer(configure)
+#
+#
+# @then(parsers.parse('I click on the "{text}" button'))
+# def logging_in(text):
+#     element = drivers.find_ele_xp('details', text)
+#     methods.clicker(element)
+#
+#
+# @then(parsers.parse('Search for "{variable_name}" in "{file_name}"'))
+# def get_var_fromfile(variable_name, file_name):
+#     output = methods.extract_variable(variable_name, file_name)
+#     print(output)
