@@ -1,4 +1,5 @@
 import pyautogui as py
+import configparser
 
 
 def clicker(variable):
@@ -37,3 +38,7 @@ def data_mod(data):
     return data.replace(" ", ".")
 
 
+def get_data(file_name, heading, variable):
+    config = configparser.RawConfigParser()
+    config.read(file_name)
+    return config.get(heading, variable)
