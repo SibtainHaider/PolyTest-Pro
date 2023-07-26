@@ -1,6 +1,6 @@
 import time
 from pytest_bdd import scenario, given, when, then, parsers
-from tests import drivers, methods
+from tests import drivers, methods, zipper
 import allure
 
 
@@ -74,6 +74,7 @@ def logging_in(button_name, testfile):
     box_update_path = drivers.find_ele_xp(box_update)
     methods.clicker(box_update_path)
     time.sleep(5)
+
 
 # @when(parsers.parse('I enter "{user}" in "{box}"'))
 # def enter_credentials(user, box):

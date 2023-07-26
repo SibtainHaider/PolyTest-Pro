@@ -13,4 +13,3 @@ for /f "skip=4 delims=" %%A in ('dir /b /ad /o-n "%mainDirectory%\*"')  do (
 )
 
 cmd /k pytest --alluredir=C:\Users\msibtain.haider\Desktop\Python_Automation1\tests\allure-results\%filename%
-
