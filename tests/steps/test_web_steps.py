@@ -1,16 +1,22 @@
 import time
 from pytest_bdd import scenario, given, when, then, parsers
-from tests import drivers, methods, zipper
+from tests import drivers, methods
 import allure
+from selenium.webdriver.support.ui import Select
 
 
-@scenario('../features/webfeatures.feature', "Login with RO valid credentials")
-def test_web():
-    pass
+# @scenario('../features/webfeatures.feature', "Login with RO valid credentials")
+# def test_web():
+#     pass
+#
+#
+# @scenario('../features/ess_dashboard.feature', "User dashboard")
+# def test_ess_dashboard():
+#     pass
 
 
-@scenario('../features/ess_dashboard.feature', "User dashboard")
-def test_ess_dashboard():
+@scenario('../features/khaadi_checkout.feature', "Checking the purchase feature")
+def test_khaadi():
     pass
 
 
@@ -45,24 +51,6 @@ def verification_login(test, testfile):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@when(parsers.parse('User enter "{data}" in "{text_box}" on "{testfile}"'))
-def enter_credentials(data, text_box, testfile):
-    data_edit = methods.data_mod(data)
-    text_box_edit = methods.data_mod(text_box)
-    testfile_edit = methods.file_mod(testfile)
-    print(testfile_edit)
-    path3 = "testData/{}.properties".format(testfile_edit)
-    user_data = methods.get_data(path1 + path3, 'details', data_edit)
-    path2 = "/Identifiers/{}.properties".format(testfile_edit)
-    box = methods.get_data(path1 + path2, 'details', text_box_edit)
-    box_path = methods.extract_variable(box, testfile_edit)
-    box_update = methods.extraction_mod(box_path)
-    box_update_path = drivers.find_ele_xp(box_update)
-    methods.clicker(box_update_path)
-    methods.writer(user_data)
-
-
-@allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
 def logging_in(button_name, testfile):
     button_name_edit = methods.data_mod(button_name)
@@ -76,22 +64,39 @@ def logging_in(button_name, testfile):
     time.sleep(5)
 
 
-# @when(parsers.parse('I enter "{user}" in "{box}"'))
-# def enter_credentials(user, box):
-#     # variable replace space with .
-#     element = drivers.find_ele_xp('details', box)
-#     methods.clicker(element)
-#     configure = drivers.get_cred('details', user)
-#     methods.writer(configure)
-#
-#
-# @then(parsers.parse('I click on the "{text}" button'))
-# def logging_in(text):
-#     element = drivers.find_ele_xp('details', text)
-#     methods.clicker(element)
-#
-#
-# @then(parsers.parse('Search for "{variable_name}" in "{file_name}"'))
-# def get_var_fromfile(variable_name, file_name):
-#     output = methods.extract_variable(variable_name, file_name)
-#     print(output)
+@allure.severity(allure.severity_level.NORMAL)
+@then("The browser switches windows")
+def switch_tabs():
+    drivers.switch_to_child()
+
+
+@allure.severity(allure.severity_level.NORMAL)
+@then(parsers.parse('User enter "{data}" in "{text_box}" on "{testfile}"'))
+def enter_credentials(data, text_box, testfile):
+    data_edit = methods.data_mod(data)
+    text_box_edit = methods.data_mod(text_box)
+    testfile_edit = methods.file_mod(testfile)
+    path3 = "testData/{}.properties".format(testfile_edit)
+    user_data = methods.get_data(path1 + path3, 'details', data_edit)
+    path2 = "/Identifiers/{}.properties".format(testfile_edit)
+    box = methods.get_data(path1 + path2, 'details', text_box_edit)
+    box_path = methods.extract_variable(box, testfile_edit)
+    box_update = methods.extraction_mod(box_path)
+    box_update_path = drivers.find_ele_xp(box_update)
+    methods.clicker(box_update_path)
+    methods.writer(user_data)
+
+
+@allure.severity(allure.severity_level.NORMAL)
+@then(parsers.parse('User selects "{data}" on "{dropdown}" from "{testfile}"'))
+def select_dropdown(data, dropdown, testfile):
+    data_edit = methods.data_mod(data)
+    dropdown_edit = methods.data_mod(dropdown)
+    testfile_edit = methods.file_mod(testfile)
+    path3 = "testData/{}.properties".format(testfile_edit)
+    user_data = methods.get_data(path1 + path3, 'details', data_edit)
+    path2 = "/Identifiers/{}.properties".format(testfile_edit)
+    box = methods.get_data(path1 + path2, 'details', dropdown_edit)
+    box_path = methods.extract_variable(box, testfile_edit)
+    box_update = methods.extraction_mod(box_path)
+    drivers.select_dropdown(user_data, box_update)
