@@ -5,6 +5,11 @@ import allure
 from selenium.webdriver.support.ui import Select
 
 
+@scenario('../features/j._checkout.feature', "Checking the purchase feature")
+def test_JJ():
+    pass
+
+
 # @scenario('../features/webfeatures.feature', "Login with RO valid credentials")
 # def test_web():
 #     pass
@@ -15,9 +20,9 @@ from selenium.webdriver.support.ui import Select
 #     pass
 
 
-@scenario('../features/khaadi_checkout.feature', "Checking the purchase feature")
-def test_khaadi():
-    pass
+# @scenario('../features/khaadi_checkout.feature', "Checking the purchase feature")
+# def test_khaadi():
+#     pass
 
 
 path1 = "C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/"
@@ -52,7 +57,7 @@ def verification_login(test, testfile):
 
 @allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
-def logging_in(button_name, testfile):
+def click(button_name, testfile):
     button_name_edit = methods.data_mod(button_name)
     testfile_edit = methods.file_mod(testfile)
     path2 = "/Identifiers/{}.properties".format(testfile_edit)
@@ -60,8 +65,9 @@ def logging_in(button_name, testfile):
     box_path = methods.extract_variable(box, testfile_edit)
     box_update = methods.extraction_mod(box_path)
     box_update_path = drivers.find_ele_xp(box_update)
+    # drivers.element_focus(box_update_path)
     methods.clicker(box_update_path)
-    time.sleep(5)
+    time.sleep(2)
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -100,3 +106,15 @@ def select_dropdown(data, dropdown, testfile):
     box_path = methods.extract_variable(box, testfile_edit)
     box_update = methods.extraction_mod(box_path)
     drivers.select_dropdown(user_data, box_update)
+
+
+@then(parsers.parse('User scrolls to "{element}" on "{testfile}"'))
+def scroll_to_element(element, testfile):
+    element_edit = methods.data_mod(element)
+    testfile_edit = methods.file_mod(testfile)
+    path2 = "/Identifiers/{}.properties".format(testfile_edit)
+    box = methods.get_data(path1 + path2, 'details', element_edit)
+    box_path = methods.extract_variable(box, testfile_edit)
+    box_update = methods.extraction_mod(box_path)
+    box_update_path = drivers.find_ele_xp(box_update)
+    drivers.element_focus(box_update_path)

@@ -3,6 +3,7 @@ import configparser
 
 
 def clicker(variable):
+
     variable.click()
 
 
