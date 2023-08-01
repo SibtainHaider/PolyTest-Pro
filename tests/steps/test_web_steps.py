@@ -2,6 +2,7 @@ import time
 from pytest_bdd import scenario, given, when, then, parsers
 from tests import drivers, methods
 import allure
+import pytest_html
 
 
 @scenario('../features/sapphire_checkout.feature', "Checking the purchase feature")
@@ -12,7 +13,6 @@ def test_sapphire():
 # @scenario('../features/j._checkout.feature', "Checking the purchase feature")
 # def test_JJ():
 #     pass
-
 
 # @scenario('../features/webfeatures.feature', "Login with RO valid credentials")
 # def test_web():
