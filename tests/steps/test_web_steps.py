@@ -1,8 +1,8 @@
 import time
+from allure_commons.types import AttachmentType
 from pytest_bdd import scenario, given, when, then, parsers
 from tests import drivers, methods
 import allure
-import pytest_html
 
 
 @scenario('../features/sapphire_checkout.feature', "Checking the purchase feature")
@@ -40,6 +40,7 @@ def browser_navigation(web_name, testfile):
     path2 = "testData/{}.properties".format(testfile_edit)
     url = methods.get_data(path1 + path2, 'details', web_name_edit)
     drivers.driver.get(url)
+    allure.attach(drivers.driver.get_screenshot_as_png(),name="urlbrowse", attachment_type=AttachmentType.PNG)
 
 
 @allure.severity(allure.severity_level.NORMAL)
