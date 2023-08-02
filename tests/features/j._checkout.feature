@@ -4,7 +4,7 @@ Feature: J. checkout
   Scenario: Checking the purchase feature
     Given User is on the "junaid jamshed page" page on "JJ"
     Then User selects "country" on "country select" from "JJ"
-    Then User Click on "enter btn" on "JJ"
+#    Then User Click on "enter btn" on "JJ"
     Then User Click on "enter btn" on "JJ"
     Then User Click on "men btn" on "JJ"
     Then User Click on "shop now" on "JJ"

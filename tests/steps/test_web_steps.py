@@ -5,14 +5,14 @@ from tests import drivers, methods
 import allure
 
 
-@scenario('../features/sapphire_checkout.feature', "Checking the purchase feature")
-def test_sapphire():
-    pass
-
-
-# @scenario('../features/j._checkout.feature', "Checking the purchase feature")
-# def test_JJ():
+# @scenario('../features/sapphire_checkout.feature', "Checking the purchase feature")
+# def test_sapphire():
 #     pass
+
+
+@scenario('../features/j._checkout.feature', "Checking the purchase feature")
+def test_JJ():
+    pass
 
 # @scenario('../features/webfeatures.feature', "Login with RO valid credentials")
 # def test_web():
@@ -22,7 +22,6 @@ def test_sapphire():
 # @scenario('../features/ess_dashboard.feature', "User dashboard")
 # def test_ess_dashboard():
 #     pass
-
 
 # @scenario('../features/khaadi_checkout.feature', "Checking the purchase feature")
 # def test_khaadi():
@@ -40,7 +39,7 @@ def browser_navigation(web_name, testfile):
     path2 = "testData/{}.properties".format(testfile_edit)
     url = methods.get_data(path1 + path2, 'details', web_name_edit)
     drivers.driver.get(url)
-    allure.attach(drivers.driver.get_screenshot_as_png(),name="urlbrowse", attachment_type=AttachmentType.PNG)
+    allure.attach(drivers.driver.get_screenshot_as_png(), name="url_browse", attachment_type=AttachmentType.PNG)
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -57,6 +56,7 @@ def verification_login(test, testfile):
     path3 = "testData/{}.properties".format(testfile_edit)
     check = methods.get_data(path1 + path3, 'details', data_edit)
     methods.compare(check, username)
+    allure.attach(drivers.driver.get_screenshot_as_png(), name="verification", attachment_type=AttachmentType.PNG)
     time.sleep(5)
 
 
@@ -72,6 +72,7 @@ def click(button_name, testfile):
     box_update_path = drivers.find_ele_xp(box_update)
     # drivers.element_focus(box_update_path)
     methods.clicker(box_update_path)
+    allure.attach(drivers.driver.get_screenshot_as_png(), name="click", attachment_type=AttachmentType.PNG)
     time.sleep(2)
 
 
@@ -96,6 +97,7 @@ def enter_credentials(data, text_box, testfile):
     box_update_path = drivers.find_ele_xp(box_update)
     methods.clicker(box_update_path)
     methods.writer(user_data)
+    allure.attach(drivers.driver.get_screenshot_as_png(), name="enter_credentials", attachment_type=AttachmentType.PNG)
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -111,6 +113,7 @@ def select_dropdown(data, dropdown, testfile):
     box_path = methods.extract_variable(box, testfile_edit)
     box_update = methods.extraction_mod(box_path)
     drivers.select_dropdown(user_data, box_update)
+    allure.attach(drivers.driver.get_screenshot_as_png(), name="dropdown", attachment_type=AttachmentType.PNG)
 
 
 @then(parsers.parse('User scrolls to "{element}" on "{testfile}"'))
@@ -123,3 +126,4 @@ def scroll_to_element(element, testfile):
     box_update = methods.extraction_mod(box_path)
     box_update_path = drivers.find_ele_xp(box_update)
     drivers.element_focus(box_update_path)
+    allure.attach(drivers.driver.get_screenshot_as_png(), name="scroll", attachment_type=AttachmentType.PNG)
