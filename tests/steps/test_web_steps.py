@@ -5,15 +5,21 @@ from tests import drivers, methods
 import allure
 
 
-# @scenario('../features/sapphire_checkout.feature', "Checking the purchase feature")
-# def test_sapphire():
-#     pass
-
-
-@scenario('../features/j._checkout.feature', "Checking the purchase feature")
-def test_JJ():
+@scenario('../features/sapphire_checkout.feature', "Checking the purchase feature")
+def test_sapphire():
     pass
 
+
+# @scenario('../features/khaadi_checkout.feature', "Checking the purchase feature")
+# def test_khaadi():
+#     pass
+#
+#
+# @scenario('../features/j._checkout.feature', "Checking the purchase feature")
+# def test_JJ():
+#     pass
+#
+#
 # @scenario('../features/webfeatures.feature', "Login with RO valid credentials")
 # def test_web():
 #     pass
@@ -21,10 +27,6 @@ def test_JJ():
 #
 # @scenario('../features/ess_dashboard.feature', "User dashboard")
 # def test_ess_dashboard():
-#     pass
-
-# @scenario('../features/khaadi_checkout.feature', "Checking the purchase feature")
-# def test_khaadi():
 #     pass
 
 

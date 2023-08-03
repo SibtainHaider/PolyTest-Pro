@@ -1,3 +1,4 @@
+import json
 import pyautogui as py
 import configparser
 
@@ -43,3 +44,9 @@ def get_data(file_name, heading, variable):
     config = configparser.RawConfigParser()
     config.read(file_name)
     return config.get(heading, variable)
+
+
+def api_data(file_name):
+    with open('C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/Requests/{}.json'.format(file_name)) as file:
+        data = json.load(file)
+    return data
