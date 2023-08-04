@@ -1,0 +1,1 @@
+SELECT number_value FROM test_numbers WHERE number_value==2;
