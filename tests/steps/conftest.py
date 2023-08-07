@@ -4,32 +4,6 @@ from pytest_bdd import scenario, given, when, then, parsers
 from tests import drivers, methods
 import allure
 
-
-@scenario('../features/sapphire_checkout.feature', "Checking the purchase feature")
-def test_sapphire():
-    pass
-
-
-# @scenario('../features/khaadi_checkout.feature', "Checking the purchase feature")
-# def test_khaadi():
-#     pass
-#
-#
-# @scenario('../features/j._checkout.feature', "Checking the purchase feature")
-# def test_JJ():
-#     pass
-#
-#
-# @scenario('../features/webfeatures.feature', "Login with RO valid credentials")
-# def test_web():
-#     pass
-#
-#
-# @scenario('../features/ess_dashboard.feature', "User dashboard")
-# def test_ess_dashboard():
-#     pass
-
-
 path1 = "C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/"
 
 
