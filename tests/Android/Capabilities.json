@@ -1,0 +1,7 @@
+{
+  "appium:deviceName": "R58R63F7KGL",
+  "platformName": "Android",
+  "appium:platformVersion": "13.0",
+  "appium:appPackage": "com.android.chrome",
+  "appium:appActivity": "com.google.android.apps.chrome.Main"
+}

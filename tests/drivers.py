@@ -1,15 +1,24 @@
 import time
-
-from selenium import webdriver
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from tests import methods
+from steps import test_android_steps
 
+android_path = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/Android/'
+config_path = "C:\\Users\\msibtain.haider\\Desktop\\Python_Automation1\\tests\\Identifiers\\config.properties"
 
-driver = webdriver.Edge()
-driver.maximize_window()
+platform_name = methods.get_data(config_path, "platform", "source")
+if platform_name == "web":
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import Select
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    driver = webdriver.Edge()
+    driver.maximize_window()
+elif platform_name == "mobile":
+    from appium import webdriver
+    desired_cap = methods.json_data(android_path, 'Capabilities')
+    driver = webdriver.Remote("http://localhost:4723/wd/hub", desired_cap, proxy=None)
 
 
 def find_ele_xp(var):

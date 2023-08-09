@@ -103,3 +103,19 @@ def scroll_to_element(element, testfile):
     box_update_path = drivers.find_ele_xp(box_update)
     drivers.element_focus(box_update_path)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="scroll", attachment_type=AttachmentType.PNG)
+
+# from appium.webdriver.common.touch_action import TouchAction
+#
+#
+# @allure.severity(allure.severity_level.NORMAL)
+# @then(parsers.parse('User scrolls with "{x1}", "{y1}" to "{x2}", "{y2}" "{number}" times'))
+# def scroll_to_element(x1, y1, x2, y2, number, path):
+#     x1_get = methods.get_data(path, 'details', x1)
+#     x2_get = methods.get_data(path, 'details', x2)
+#     y1_get = methods.get_data(path, 'details', y1)
+#     y2_get = methods.get_data(path, 'details', y2)
+#     number_get = methods.get_data(path, 'details', number)
+#     for i in range(number):
+#         touch = TouchAction(driver)
+#         touch.press(x1_get, y1_get).move_to(x2_get, y2_get).release().perform()
+#         time.sleep(3)

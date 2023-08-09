@@ -13,6 +13,7 @@ get = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/API_Data/get.pr
 post = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/API_Data/post.properties'
 put = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/API_Data/put.properties'
 delete = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/API_Data/delete.properties'
+api_path = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/Requests/'
 
 
 @given(parsers.parse('There is an API with "{link}"'))
@@ -36,7 +37,7 @@ def API_get(link):
 @then(parsers.parse('User Hit Post "{link}" with "{post_json}"'))
 def API_post(link, post_json):
     json_edit = methods.file_mod(post_json)
-    data = methods.api_data(json_edit)
+    data = methods.json_data(api_path, json_edit)
     link_edit = methods.data_mod(link)
     url = methods.get_data(post, 'details', link_edit)
     resp = requests.post(url, data=data, verify=False)
@@ -49,7 +50,7 @@ def API_post(link, post_json):
 @then(parsers.parse('User Hit Put "{link}" with "{post_json}"'))
 def API_update(link, post_json):
     json_edit = methods.file_mod(post_json)
-    data = methods.api_data(json_edit)
+    data = methods.json_data(api_path, json_edit)
     link_edit = methods.data_mod(link)
     url = methods.get_data(put, 'details', link_edit)
     resp = requests.put(url, data=data, verify=False)

@@ -1,9 +1,6 @@
-from appium import webdriver
+from pytest_bdd import scenario, given, when, then, parsers
 
-desired_cap = {
-    "deviceName": "",
-    "platformName": "Android",
-    "app": ""
-}
 
-driver = webdriver.Remote("https:://localhost:4723", desired_cap)
+@scenario('../features/android_testing.feature', 'Testing the APPLICATION')
+def test_android():
+    pass

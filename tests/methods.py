@@ -46,7 +46,12 @@ def get_data(file_name, heading, variable):
     return config.get(heading, variable)
 
 
-def api_data(file_name):
-    with open('C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/Requests/{}.json'.format(file_name)) as file:
+def json_data(file_name, path_variable):
+    with open('{}{}.json'.format(file_name, path_variable)) as file:
         data = json.load(file)
     return data
+
+# def json_data_appium(file_name):
+#     with open('C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/Android/{}.json'.format(file_name)) as file:
+#         data = json.load(file)
+#     return data
