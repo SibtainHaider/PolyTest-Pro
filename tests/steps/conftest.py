@@ -43,13 +43,15 @@ def click(button_name, testfile):
     testfile_edit = methods.file_mod(testfile)
     path2 = "/Identifiers/{}.properties".format(testfile_edit)
     box = methods.get_data(path1 + path2, 'details', button_name_edit)
+    print(box)
     box_path = methods.extract_variable(box, testfile_edit)
+    print(box_path)
     box_update = methods.extraction_mod(box_path)
     box_update_path = drivers.find_ele_xp(box_update)
     # drivers.element_focus(box_update_path)
     methods.clicker(box_update_path)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="click", attachment_type=AttachmentType.PNG)
-    time.sleep(2)
+    time.sleep(5)
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -93,7 +95,7 @@ def select_dropdown(data, dropdown, testfile):
 
 
 @then(parsers.parse('User scrolls to "{element}" on "{testfile}"'))
-def scroll_to_element(element, testfile):
+def scroll_to_web_element(element, testfile):
     element_edit = methods.data_mod(element)
     testfile_edit = methods.file_mod(testfile)
     path2 = "/Identifiers/{}.properties".format(testfile_edit)
@@ -109,7 +111,7 @@ def scroll_to_element(element, testfile):
 #
 # @allure.severity(allure.severity_level.NORMAL)
 # @then(parsers.parse('User scrolls with "{x1}", "{y1}" to "{x2}", "{y2}" "{number}" times'))
-# def scroll_to_element(x1, y1, x2, y2, number, path):
+# def scroll_to_app_element(x1, y1, x2, y2, number, path):
 #     x1_get = methods.get_data(path, 'details', x1)
 #     x2_get = methods.get_data(path, 'details', x2)
 #     y1_get = methods.get_data(path, 'details', y1)

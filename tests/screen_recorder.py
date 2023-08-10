@@ -33,6 +33,12 @@ record_thread.start()
 print('abcd')
 time.sleep(5)
 
+# # Execute the pytest-bdd scenario using subprocess
+# pytest_process = subprocess.Popen(["pytest", "-s", "path_to_your_test_file.py"])
+#
+# # Wait for the pytest process to finish
+# pytest_process.wait()
+
 
 # Stop recording
 recording = False

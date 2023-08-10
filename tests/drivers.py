@@ -1,4 +1,6 @@
 import time
+
+
 from tests import methods
 
 android_path = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/Android/'
@@ -7,7 +9,7 @@ config_path = "C:\\Users\\msibtain.haider\\Desktop\\Python_Automation1\\tests\\I
 platform_name = methods.get_data(config_path, "platform", "source")
 if platform_name == "web":
     from selenium import webdriver
-    from selenium.webdriver.common.by import By
+    # from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import Select
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
@@ -16,9 +18,10 @@ if platform_name == "web":
     methods.properties_updater(config_path, 'platform', 'source', 'mobile')
 elif platform_name == "mobile":
     from appium import webdriver
+    from appium.webdriver.common.appiumby import AppiumBy as By
     desired_cap = methods.json_data(android_path, 'Capabilities')
     driver = webdriver.Remote("http://localhost:4723/wd/hub", desired_cap, proxy=None)
-    methods.properties_updater(config_path, 'platform', 'source', 'web')
+    # methods.properties_updater(config_path, 'platform', 'source', 'web')
 
 
 def find_ele_xp(var):

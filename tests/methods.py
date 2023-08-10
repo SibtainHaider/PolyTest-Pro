@@ -2,8 +2,8 @@ import json
 import pyautogui as py
 import configparser
 
-def clicker(variable):
 
+def clicker(variable):
     variable.click()
 
 
