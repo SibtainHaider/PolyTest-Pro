@@ -1,6 +1,10 @@
-import time
 from tests import methods
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import os
+
+POLL_FREQUENCY = 0.1
+TIMEOUT = 10
 
 current_script_path = os.path.abspath(__file__)
 root_dir = os.path.dirname(current_script_path)
@@ -26,8 +30,6 @@ if platform_source == "web":
     from selenium import webdriver
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import Select
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
     driver = webdriver.Edge()
     driver.maximize_window()
 elif platform_source == "mobile":
@@ -47,8 +49,8 @@ elif platform_source == "mobile":
 
 
 def find_ele_xp(var):
-    element = driver.find_element(By.XPATH, var)
-    return element
+    element = (By.XPATH, var)
+    return WebDriverWait(driver, TIMEOUT, POLL_FREQUENCY).until(EC.visibility_of_element_located(element))
 
 
 def switch_to_child_window():
@@ -62,14 +64,13 @@ def switch_to_parent_window():
 
 
 def select_dropdown(data, xpath):
-    select = Select(WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath))))
+    select = Select(WebDriverWait(driver, TIMEOUT, POLL_FREQUENCY).until(EC.element_to_be_clickable((By.XPATH, xpath))))
     select.select_by_visible_text(data)
 
 
 def scroll_to_element(element):
     while not element.location_once_scrolled_into_view:
         driver.execute_script("arguments[0].scrollIntoView({block: 'start', behavior: 'instant'});", element)
-        time.sleep(0.5)
 
 
 def switch_driver():
@@ -80,8 +81,6 @@ def switch_driver():
         from selenium import webdriver
         from selenium.webdriver.common.by import By
         from selenium.webdriver.support.ui import Select
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium.webdriver.support import expected_conditions as EC
         driver = webdriver.Edge()
         driver.maximize_window()
         methods.properties_file_updater(config_path, 'platform', 'source', 'web')

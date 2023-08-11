@@ -1,4 +1,3 @@
-import time
 from allure_commons.types import AttachmentType
 from pytest_bdd import given, when, then, parsers
 from tests import drivers, methods
@@ -7,8 +6,7 @@ from appium.webdriver.common.touch_action import TouchAction
 import os
 
 current_script_path = os.path.abspath(__file__)
-root_dir = os.path.dirname(current_script_path)
-path1 = os.path.join(os.path.dirname(os.path.dirname(root_dir)), "tests")
+path1 = os.path.dirname(os.path.dirname(current_script_path))
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -16,7 +14,7 @@ path1 = os.path.join(os.path.dirname(os.path.dirname(root_dir)), "tests")
 def browser_navigation(web_name, testfile):
     web_name_edit = methods.data_mod(web_name)
     testfile_edit = methods.file_mod(testfile)
-    path2 = "testData/{}.properties".format(testfile_edit)
+    path2 = "/testData/{}.properties".format(testfile_edit)
     url = methods.get_data(path1 + path2, 'details', web_name_edit)
     drivers.driver.get(url)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="url_browse", attachment_type=AttachmentType.PNG)
@@ -25,7 +23,6 @@ def browser_navigation(web_name, testfile):
 @allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User is verified with "{test}" located on "{testfile}"'))
 def verification_login(test, testfile):
-    time.sleep(10)
     data_edit = methods.data_mod(test)
     testfile_edit = methods.file_mod(testfile)
     path2 = "/Identifiers/{}.properties".format(testfile_edit)
@@ -33,17 +30,15 @@ def verification_login(test, testfile):
     user_path = methods.extract_variable(user_data, testfile_edit)
     user_update = methods.extraction_mod(user_path)
     username = drivers.find_ele_xp(user_update).text
-    path3 = "testData/{}.properties".format(testfile_edit)
+    path3 = "/testData/{}.properties".format(testfile_edit)
     check = methods.get_data(path1 + path3, 'details', data_edit)
     methods.compare(check, username)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="verification", attachment_type=AttachmentType.PNG)
-    time.sleep(5)
 
 
 @allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
 def click(button_name, testfile):
-    time.sleep(10)
     button_name_edit = methods.data_mod(button_name)
     testfile_edit = methods.file_mod(testfile)
     path2 = "/Identifiers/{}.properties".format(testfile_edit)
@@ -53,7 +48,6 @@ def click(button_name, testfile):
     box_update_path = drivers.find_ele_xp(box_update)
     methods.clicker(box_update_path)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="click", attachment_type=AttachmentType.PNG)
-    time.sleep(5)
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -68,7 +62,7 @@ def enter_credentials(data, text_box, testfile):
     data_edit = methods.data_mod(data)
     text_box_edit = methods.data_mod(text_box)
     testfile_edit = methods.file_mod(testfile)
-    path3 = "testData/{}.properties".format(testfile_edit)
+    path3 = "/testData/{}.properties".format(testfile_edit)
     user_data = methods.get_data(path1 + path3, 'details', data_edit)
     path2 = "/Identifiers/{}.properties".format(testfile_edit)
     box = methods.get_data(path1 + path2, 'details', text_box_edit)
@@ -86,7 +80,7 @@ def select_dropdown(data, dropdown, testfile):
     data_edit = methods.data_mod(data)
     dropdown_edit = methods.data_mod(dropdown)
     testfile_edit = methods.file_mod(testfile)
-    path3 = "testData/{}.properties".format(testfile_edit)
+    path3 = "/testData/{}.properties".format(testfile_edit)
     user_data = methods.get_data(path1 + path3, 'details', data_edit)
     path2 = "/Identifiers/{}.properties".format(testfile_edit)
     box = methods.get_data(path1 + path2, 'details', dropdown_edit)
@@ -120,7 +114,6 @@ def scroll_to_app_element(x1, y1, x2, y2, number, path):
     for i in range(number):
         touch = TouchAction(drivers.driver)
         touch.press(x1_get, y1_get).move_to(x2_get, y2_get).release().perform()
-        time.sleep(3)
 
 
 @then("User switches the driver")

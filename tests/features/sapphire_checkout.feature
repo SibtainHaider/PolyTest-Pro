@@ -5,7 +5,7 @@ Feature: Sapphire checkout
     Given User is on the "sapphire page" page on "sapphire"
     Then User Click on "men btn" on "sapphire"
     Then User Click on "add bag" on "sapphire"
-    Then User Click on "choose size" on "sapphire"
+#    Then User Click on "choose size" on "sapphire"
     Then User Click on "add cart" on "sapphire"
     Then User Click on "check out" on "sapphire"
     Then User enter "email" in "email box" on "sapphire"

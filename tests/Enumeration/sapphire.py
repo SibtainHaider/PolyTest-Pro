@@ -1,5 +1,5 @@
 Xpath_men_btn = "//li[@id='item_6523e09c-4b31-429b-84b8-5520b52e1273']"
-Xpath_add_bag = "//div[@class='t4s-product t4s-pr-grid t4s-pr-style1 t4s-pr-7103700795466 t4s-col-item is-t4s-pr-created']//a[@class='t4s-full-width-link is--href-replaced']"
+Xpath_add_bag = "//div[@class='t4s-product t4s-pr-grid t4s-pr-style1 t4s-pr-7236558323786 t4s-col-item is-t4s-pr-created']//a[@class='t4s-full-width-link is--href-replaced']"
 Xpath_choose_size = "//div[@data-value='M']"
 Xpath_add_cart = "//button[@name='add' and @type='submit']"
 Xpath_check_out = "//button[@name='checkout']"

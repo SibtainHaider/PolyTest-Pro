@@ -4,8 +4,7 @@ import requests
 import os
 
 current_script_path = os.path.abspath(__file__)
-root_dir = os.path.dirname(current_script_path)
-path1 = os.path.join(os.path.dirname(os.path.dirname(root_dir)), "tests")
+path1 = os.path.dirname(os.path.dirname(current_script_path))
 
 
 @scenario('../features/api_testing.feature', 'Testing the API')
