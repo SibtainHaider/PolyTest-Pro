@@ -1,6 +1,10 @@
 import json
 import pyautogui as py
 import configparser
+import os
+
+current_script_path = os.path.abspath(__file__)
+root_dir = os.path.dirname(current_script_path)
 
 
 def clicker(variable):
@@ -19,7 +23,7 @@ def compare(value1, value2):
 
 
 def extract_variable(variable_name, file_name):
-    file = open("C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/Enumeration/{}.py".format(file_name), 'r')
+    file = open(root_dir + "/Enumeration/{}.py".format(file_name), 'r')
     for line in file:
         line = line.split(' = ')
         line[0] = line[0].strip()
@@ -45,13 +49,13 @@ def get_data(file_name, heading, variable):
     return config.get(heading, variable)
 
 
-def json_data(file_name, path_variable):
-    with open('{}{}.json'.format(file_name, path_variable)) as file:
+def json_data(file_path):
+    with open(file_path) as file:
         data = json.load(file)
     return data
 
 
-def properties_updater(file_name, section, variable, to_value):
+def properties_file_updater(file_name, section, variable, to_value):
     config = configparser.RawConfigParser()
     config.read(file_name)
     cfgfile = open(file_name, 'w')

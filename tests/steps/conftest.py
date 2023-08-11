@@ -1,10 +1,13 @@
 import time
 from allure_commons.types import AttachmentType
-from pytest_bdd import scenario, given, when, then, parsers
+from pytest_bdd import given, when, then, parsers
 from tests import drivers, methods
 import allure
+import os
 
-path1 = "C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/"
+current_script_path = os.path.abspath(__file__)
+root_dir = os.path.dirname(current_script_path)
+path1 = os.path.join(os.path.dirname(os.path.dirname(root_dir)), "tests")
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -39,16 +42,14 @@ def verification_login(test, testfile):
 @allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
 def click(button_name, testfile):
+    time.sleep(10)
     button_name_edit = methods.data_mod(button_name)
     testfile_edit = methods.file_mod(testfile)
     path2 = "/Identifiers/{}.properties".format(testfile_edit)
     box = methods.get_data(path1 + path2, 'details', button_name_edit)
-    print(box)
     box_path = methods.extract_variable(box, testfile_edit)
-    print(box_path)
     box_update = methods.extraction_mod(box_path)
     box_update_path = drivers.find_ele_xp(box_update)
-    # drivers.element_focus(box_update_path)
     methods.clicker(box_update_path)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="click", attachment_type=AttachmentType.PNG)
     time.sleep(5)
@@ -57,7 +58,7 @@ def click(button_name, testfile):
 @allure.severity(allure.severity_level.NORMAL)
 @then("The browser switches windows")
 def switch_tabs():
-    drivers.switch_to_child()
+    drivers.switch_to_child_window()
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -103,7 +104,7 @@ def scroll_to_web_element(element, testfile):
     box_path = methods.extract_variable(box, testfile_edit)
     box_update = methods.extraction_mod(box_path)
     box_update_path = drivers.find_ele_xp(box_update)
-    drivers.element_focus(box_update_path)
+    drivers.scroll_to_element(box_update_path)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="scroll", attachment_type=AttachmentType.PNG)
 
 # from appium.webdriver.common.touch_action import TouchAction
@@ -121,3 +122,8 @@ def scroll_to_web_element(element, testfile):
 #         touch = TouchAction(driver)
 #         touch.press(x1_get, y1_get).move_to(x2_get, y2_get).release().perform()
 #         time.sleep(3)
+
+
+@then("User quits the driver")
+def Driver_quit():
+    drivers.delete_driver()

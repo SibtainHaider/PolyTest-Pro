@@ -1,3 +1,4 @@
+import subprocess
 import time
 
 import cv2
@@ -17,27 +18,30 @@ fourcc = cv2.VideoWriter_fourcc(*"XVID")
 out = cv2.VideoWriter("output_video.avi", fourcc, fps, (output_width, output_height))
 
 # Function to record the screen
+
+
 def record_screen():
     while recording:
         screenshot = pyautogui.screenshot()
         frame = np.array(screenshot)
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
         out.write(frame)
-
 # Start recording thread
+
+
 recording = True
 record_thread = threading.Thread(target=record_screen)
 record_thread.start()
 
 # Execute your code here
-print('abcd')
-time.sleep(5)
+# print('abcd')
+# time.sleep(5)
 
-# # Execute the pytest-bdd scenario using subprocess
-# pytest_process = subprocess.Popen(["pytest", "-s", "path_to_your_test_file.py"])
-#
-# # Wait for the pytest process to finish
-# pytest_process.wait()
+# Execute the pytest-bdd scenario using subprocess
+pytest_process = subprocess.Popen(["pytest", "-s", "C:\\Users\\msibtain.haider\\Desktop\\Python_Automation1\\tests\steps\\test_android_steps.py"])
+
+# Wait for the pytest process to finish
+pytest_process.wait()
 
 
 # Stop recording

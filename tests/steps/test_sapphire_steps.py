@@ -1,4 +1,4 @@
-from pytest_bdd import scenario, given, when, then, parsers
+from pytest_bdd import scenario
 
 
 @scenario('../features/sapphire_checkout.feature', "Checking the purchase feature")

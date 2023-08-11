@@ -1,7 +1,6 @@
 {
-  "appium:deviceName": "R58R63F7KGL",
+  "appium:deviceName": "R58R83BH48Z",
   "platformName": "Android",
-  "appium:platformVersion": "13.0",
-  "appium:appPackage": "com.android.chrome",
-  "appium:appActivity": "com.google.android.apps.chrome.Main"
+  "appium:platformVersion": "12.0",
+  "appium:app": "C:\\Users\\msibtain.haider\\Desktop\\app-uat-debug.apk"
 }

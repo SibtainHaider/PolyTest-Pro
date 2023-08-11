@@ -16,4 +16,3 @@ Feature: Sapphire checkout
     Then User enter "zipcode" in "zip box" on "sapphire"
     Then User enter "phonenum" in "num box" on "sapphire"
     Then User Click on "continue btn" on "sapphire"
-
