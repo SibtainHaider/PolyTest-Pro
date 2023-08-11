@@ -49,7 +49,23 @@ def get_data(file_name, heading, variable):
     return config.get(heading, variable)
 
 
-def json_data(file_path):
+def json_data_assigning(variable, value, json_file_path):
+    with open(json_file_path, 'r') as json_file:
+        json_data = json.load(json_file)
+    json_data[variable] = value
+    with open(json_file_path, 'w') as json_file:
+        json.dump(json_data, json_file, indent=4)
+
+
+def json_data_removal(variable, json_file_path):
+    with open(json_file_path, 'r') as json_file:
+        json_data = json.load(json_file)
+    json_data[variable] = ''
+    with open(json_file_path, 'w') as json_file:
+        json.dump(json_data, json_file, indent=4)
+
+
+def json_data_get(file_path):
     with open(file_path) as file:
         data = json.load(file)
     return data

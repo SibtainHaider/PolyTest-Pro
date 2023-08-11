@@ -1,6 +1,11 @@
 from pytest_bdd import scenario, given, when, then, parsers
 from tests import methods
 import requests
+import os
+
+current_script_path = os.path.abspath(__file__)
+root_dir = os.path.dirname(current_script_path)
+path1 = os.path.join(os.path.dirname(os.path.dirname(root_dir)), "tests")
 
 
 @scenario('../features/api_testing.feature', 'Testing the API')
@@ -8,12 +13,12 @@ def test_api():
     pass
 
 
-check = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/API_Data/check.properties'
-get = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/API_Data/get.properties'
-post = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/API_Data/post.properties'
-put = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/API_Data/put.properties'
-delete = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/API_Data/delete.properties'
-api_path = 'C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/Requests/'
+check = path1 + '/API_Data/check.properties'
+get = path1 + '/API_Data/get.properties'
+post = path1 + '/API_Data/post.properties'
+put = path1 + '/API_Data/put.properties'
+delete = path1 + '/API_Data/delete.properties'
+api_path = path1 + '/Requests/'
 
 
 @given(parsers.parse('There is an API with "{link}"'))
@@ -37,7 +42,8 @@ def API_get(link):
 @then(parsers.parse('User Hit Post "{link}" with "{post_json}"'))
 def API_post(link, post_json):
     json_edit = methods.file_mod(post_json)
-    data = methods.json_data(api_path, json_edit)
+    api_path_updated = api_path + json_edit + '.json'
+    data = methods.json_data_get(api_path_updated)
     link_edit = methods.data_mod(link)
     url = methods.get_data(post, 'details', link_edit)
     resp = requests.post(url, data=data, verify=False)
@@ -50,7 +56,8 @@ def API_post(link, post_json):
 @then(parsers.parse('User Hit Put "{link}" with "{post_json}"'))
 def API_update(link, post_json):
     json_edit = methods.file_mod(post_json)
-    data = methods.json_data(api_path, json_edit)
+    api_path_updated = api_path + json_edit + '.json'
+    data = methods.json_data_get(api_path_updated)
     link_edit = methods.data_mod(link)
     url = methods.get_data(put, 'details', link_edit)
     resp = requests.put(url, data=data, verify=False)

@@ -3,6 +3,7 @@ from allure_commons.types import AttachmentType
 from pytest_bdd import given, when, then, parsers
 from tests import drivers, methods
 import allure
+from appium.webdriver.common.touch_action import TouchAction
 import os
 
 current_script_path = os.path.abspath(__file__)
@@ -107,23 +108,21 @@ def scroll_to_web_element(element, testfile):
     drivers.scroll_to_element(box_update_path)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="scroll", attachment_type=AttachmentType.PNG)
 
-# from appium.webdriver.common.touch_action import TouchAction
-#
-#
-# @allure.severity(allure.severity_level.NORMAL)
-# @then(parsers.parse('User scrolls with "{x1}", "{y1}" to "{x2}", "{y2}" "{number}" times'))
-# def scroll_to_app_element(x1, y1, x2, y2, number, path):
-#     x1_get = methods.get_data(path, 'details', x1)
-#     x2_get = methods.get_data(path, 'details', x2)
-#     y1_get = methods.get_data(path, 'details', y1)
-#     y2_get = methods.get_data(path, 'details', y2)
-#     number_get = methods.get_data(path, 'details', number)
-#     for i in range(number):
-#         touch = TouchAction(driver)
-#         touch.press(x1_get, y1_get).move_to(x2_get, y2_get).release().perform()
-#         time.sleep(3)
+
+@allure.severity(allure.severity_level.NORMAL)
+@then(parsers.parse('User scrolls with "{x1}", "{y1}" to "{x2}", "{y2}" "{number}" times'))
+def scroll_to_app_element(x1, y1, x2, y2, number, path):
+    x1_get = methods.get_data(path, 'details', x1)
+    x2_get = methods.get_data(path, 'details', x2)
+    y1_get = methods.get_data(path, 'details', y1)
+    y2_get = methods.get_data(path, 'details', y2)
+    number_get = methods.get_data(path, 'details', number)
+    for i in range(number):
+        touch = TouchAction(drivers.driver)
+        touch.press(x1_get, y1_get).move_to(x2_get, y2_get).release().perform()
+        time.sleep(3)
 
 
-@then("User quits the driver")
-def Driver_quit():
-    drivers.delete_driver()
+@then("User switches the driver")
+def Switch_driver():
+    drivers.switch_driver()
