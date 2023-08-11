@@ -1,6 +1,4 @@
 import subprocess
-import time
-
 import cv2
 import pyautogui
 import numpy as np
@@ -34,11 +32,8 @@ record_thread = threading.Thread(target=record_screen)
 record_thread.start()
 
 # Execute your code here
-# print('abcd')
-# time.sleep(5)
-
 # Execute the pytest-bdd scenario using subprocess
-pytest_process = subprocess.Popen(["pytest", "-s", "C:\\Users\\msibtain.haider\\Desktop\\Python_Automation1\\tests\steps\\test_android_steps.py"])
+pytest_process = subprocess.Popen(["pytest", "-s", "path_to_your_BDD_test_file.py"])
 
 # Wait for the pytest process to finish
 pytest_process.wait()
