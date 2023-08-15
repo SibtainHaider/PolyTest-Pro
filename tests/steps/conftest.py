@@ -51,9 +51,17 @@ def click(button_name, testfile):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-@then("The browser switches windows")
-def switch_tabs():
+@then("The browser switches window to child")
+def switch_tab_to_child():
     drivers.switch_to_child_window()
+    allure.attach(drivers.driver.get_screenshot_as_png(), name="switch_tab_to_child", attachment_type=AttachmentType.PNG)
+
+
+@allure.severity(allure.severity_level.NORMAL)
+@then("The browser switches window to parent")
+def switch_tab_to_parent():
+    drivers.switch_to_parent_window()
+    allure.attach(drivers.driver.get_screenshot_as_png(), name="switch_tab_to_parent", attachment_type=AttachmentType.PNG)
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -111,9 +119,10 @@ def scroll_to_app_element(x1, y1, x2, y2, number, path):
     y1_get = methods.get_data(path, 'details', y1)
     y2_get = methods.get_data(path, 'details', y2)
     number_get = methods.get_data(path, 'details', number)
-    for i in range(number):
+    for i in range(number_get):
         touch = TouchAction(drivers.driver)
         touch.press(x1_get, y1_get).move_to(x2_get, y2_get).release().perform()
+    allure.attach(drivers.driver.get_screenshot_as_png(), name="scroll", attachment_type=AttachmentType.PNG)
 
 
 @then("User switches the driver")

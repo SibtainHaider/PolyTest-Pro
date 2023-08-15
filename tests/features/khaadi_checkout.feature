@@ -7,7 +7,7 @@ Feature: Khaadi checkout
     Then User Click on "country choice" on "khaadi"
     Then User Click on "enter btn" on "khaadi"
     Then User Click on "shop now" on "khaadi"
-    Then The browser switches windows
+    Then The browser switches window to child
     Then User Click on "add bag" on "khaadi"
     Then User Click on "choose size" on "khaadi"
     Then User Click on "add cart" on "khaadi"

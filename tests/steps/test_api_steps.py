@@ -25,7 +25,6 @@ def API_Check(link):
     link_edit = methods.data_mod(link)
     url = methods.get_data(check, 'details', link_edit)
     resp = requests.get(url, verify=False)
-    print(resp.status_code)
     assert (resp.status_code == 200), "The error code is: " + str(resp.status_code)
 
 
@@ -34,7 +33,6 @@ def API_get(link):
     link_edit = methods.data_mod(link)
     url = methods.get_data(get, 'details', link_edit)
     resp = requests.get(str(url), verify=False)
-    print(resp.status_code)
     assert (resp.status_code == 200), "The error code is: " + str(resp.status_code)
 
 
@@ -46,10 +44,9 @@ def API_post(link, post_json):
     link_edit = methods.data_mod(link)
     url = methods.get_data(post, 'details', link_edit)
     resp = requests.post(url, data=data, verify=False)
-    print(resp.status_code)
-    dataa = resp.json()
+    Data = resp.json()
     assert (resp.status_code == 201), "The error code is: " + str(resp.status_code)
-    assert (dataa.get('name') == data.get('name')), "User created with wrong data: " + str(dataa.get('name'))
+    assert (Data.get('name') == data.get('name')), "User created with wrong data: " + str(Data.get('name'))
 
 
 @then(parsers.parse('User Hit Put "{link}" with "{post_json}"'))
@@ -60,10 +57,9 @@ def API_update(link, post_json):
     link_edit = methods.data_mod(link)
     url = methods.get_data(put, 'details', link_edit)
     resp = requests.put(url, data=data, verify=False)
-    print(resp.status_code)
-    dataa = resp.json()
+    Data = resp.json()
     assert (resp.status_code == 200), "The error code is: " + str(resp.status_code)
-    assert (dataa.get('name') == data.get('name')), "User created with wrong data: " + str(dataa.get('name'))
+    assert (Data.get('name') == data.get('name')), "User created with wrong data: " + str(Data.get('name'))
 
 
 @then(parsers.parse('User Hit Delete "{link}"'))
@@ -71,5 +67,4 @@ def API_delete(link):
     link_edit = methods.data_mod(link)
     url = methods.get_data(delete, 'details', link_edit)
     resp = requests.delete(str(url), verify=False)
-    print(resp.status_code)
     assert (resp.status_code == 204), "The error code is: " + str(resp.status_code)

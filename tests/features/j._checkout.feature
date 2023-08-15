@@ -8,7 +8,7 @@ Feature: J. checkout
     Then User Click on "enter btn" on "JJ"
     Then User Click on "men btn" on "JJ"
     Then User Click on "shop now" on "JJ"
-    Then The browser switches windows
+    Then The browser switches window to child
     Then User Click on "add bag" on "JJ"
     Then User Click on "choose size" on "JJ"
     Then User scrolls to "choose size" on "JJ"
