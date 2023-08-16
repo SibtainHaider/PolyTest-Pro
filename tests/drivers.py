@@ -1,22 +1,17 @@
 import os
-
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-
 from tests import methods
+from tests.UtilityFactory import waitUtilities
 
-# added poll frequency and timeout for WEBDRIVER Wait
-POLL_FREQUENCY = 0.1
-TIMEOUT = 10
+# import subprocess
+
+# subprocess.Popen("appium", shell=True)
 
 # finding the path to root directory
 current_script_path = os.path.abspath(__file__)
 root_dir = os.path.dirname(current_script_path)
-
 # formulating dynamic paths
 android_path = root_dir + '/Android/Capabilities.json'
 config_path = root_dir + '/config.properties'
-
 # getting data or values from config file that are essential for driver setup
 platform_source = methods.get_data(config_path, "platform", "source")
 appium_driver_url = methods.get_data(config_path, "platform", "appium_driver_url")
@@ -64,9 +59,15 @@ elif platform_source == "mobile":
     methods.json_data_removal("platformName", json_file_path)
 
 
-def find_ele_xp(var):
-    element = (By.XPATH, var)
-    return WebDriverWait(driver, TIMEOUT, POLL_FREQUENCY).until(EC.visibility_of_element_located(element))
+def find_ele_xp(xpath):
+    waitUtilities.elementToBe_Visible(driver, xpath)
+    element = driver.find_element(By.XPATH, xpath)
+    return element
+
+
+def clicker(variable):
+    element = waitUtilities.elementToBe_Clickable(driver, variable)
+    element.click()
 
 
 def switch_to_child_window():
@@ -80,7 +81,7 @@ def switch_to_parent_window():
 
 
 def select_dropdown(data, xpath):
-    select = Select(WebDriverWait(driver, TIMEOUT, POLL_FREQUENCY).until(EC.element_to_be_clickable((By.XPATH, xpath))))
+    select = Select(waitUtilities.elementToBe_Clickable(driver, xpath))
     select.select_by_visible_text(data)
 
 
@@ -101,9 +102,11 @@ def switch_driver():
         match selenium_driver:
             case "Edge":
                 driver = webdriver.Edge()
+                driver.set_page_load_timeout(40)
                 driver.maximize_window()
             case "Chrome":
                 driver = webdriver.Chrome()
+                driver.set_page_load_timeout(40)
                 driver.maximize_window()
         methods.properties_file_updater(config_path, 'platform', 'source', 'web')
     elif platform == "web":

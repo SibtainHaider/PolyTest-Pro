@@ -1,6 +1,6 @@
 {
-    "appium:deviceName": "",
-    "platformName": "",
-    "appium:platformVersion": "",
-    "appium:app": ""
+    "appium:deviceName": "R58R83BH48Z",
+    "platformName": "Android",
+    "appium:platformVersion": "12.0",
+    "appium:app": "C:\\Users\\msibtain.haider\\Desktop\\Python_Automation1\\tests/APK/app_uat-debug.apk"
 }

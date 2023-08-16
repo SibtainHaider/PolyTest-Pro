@@ -7,7 +7,7 @@ def zipdir(path, ziph):
         for file in files:
             ziph.write(os.path.join(root, file),
                        os.path.relpath(os.path.join(root, file),
-                                       os.path.join(path, '..')))
+                                       os.path.join(path, '../..')))
 
 
 def zipit(dir1, dir2, zip_name):

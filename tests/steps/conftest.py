@@ -46,7 +46,7 @@ def click(button_name, testfile):
     box_path = methods.extract_variable(box, testfile_edit)
     box_update = methods.extraction_mod(box_path)
     box_update_path = drivers.find_ele_xp(box_update)
-    methods.clicker(box_update_path)
+    drivers.clicker(box_update_path)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="click", attachment_type=AttachmentType.PNG)
 
 
@@ -77,7 +77,7 @@ def enter_credentials(data, text_box, testfile):
     box_path = methods.extract_variable(box, testfile_edit)
     box_update = methods.extraction_mod(box_path)
     box_update_path = drivers.find_ele_xp(box_update)
-    methods.clicker(box_update_path)
+    drivers.clicker(box_update_path)
     methods.writer(user_data)
     allure.attach(drivers.driver.get_screenshot_as_png(), name="enter_credentials", attachment_type=AttachmentType.PNG)
 
@@ -98,6 +98,7 @@ def select_dropdown(data, dropdown, testfile):
     allure.attach(drivers.driver.get_screenshot_as_png(), name="dropdown", attachment_type=AttachmentType.PNG)
 
 
+@allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User scrolls to "{element}" on "{testfile}"'))
 def scroll_to_web_element(element, testfile):
     element_edit = methods.data_mod(element)
@@ -125,6 +126,7 @@ def scroll_to_app_element(x1, y1, x2, y2, number, path):
     allure.attach(drivers.driver.get_screenshot_as_png(), name="scroll", attachment_type=AttachmentType.PNG)
 
 
+@allure.severity(allure.severity_level.NORMAL)
 @then("User switches the driver")
 def Switch_driver():
     drivers.switch_driver()

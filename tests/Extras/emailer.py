@@ -5,7 +5,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 from tests import methods
 
-file_path = "C:/Users/msibtain.haider/Desktop/Python_Automation1/tests/testData/email.properties"
+file_path = "/tests/testData/email.properties"
 fromaddr = methods.get_data(file_path, 'details', 'sender_address')
 toaddr = methods.get_data(file_path, 'details', 'receiver_address')
 

@@ -7,10 +7,6 @@ current_script_path = os.path.abspath(__file__)
 root_dir = os.path.dirname(current_script_path)
 
 
-def clicker(variable):
-    variable.click()
-
-
 def writer(value):
     py.write(value)
 

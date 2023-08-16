@@ -12,12 +12,12 @@ def test_api():
     pass
 
 
-check = path1 + '/API_Data/check.properties'
-get = path1 + '/API_Data/get.properties'
-post = path1 + '/API_Data/post.properties'
-put = path1 + '/API_Data/put.properties'
-delete = path1 + '/API_Data/delete.properties'
-api_path = path1 + '/Requests/'
+check = path1 + '/testData/API_Data/check.properties'
+get = path1 + '/testData/API_Data/get.properties'
+post = path1 + '/testData/API_Data/post.properties'
+put = path1 + '/testData/API_Data/put.properties'
+delete = path1 + '/testData/API_Data/delete.properties'
+api_path = path1 + '/API_Requests/'
 
 
 @given(parsers.parse('There is an API with "{link}"'))
