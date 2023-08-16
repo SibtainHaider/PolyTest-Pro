@@ -60,6 +60,7 @@ elif platform_source == "mobile":
 
 
 def find_ele_xp(xpath):
+    waitUtilities.wait_for_page_to_load(driver)
     waitUtilities.elementToBe_Visible(driver, xpath)
     element = driver.find_element(By.XPATH, xpath)
     return element

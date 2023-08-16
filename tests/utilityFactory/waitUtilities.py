@@ -30,3 +30,6 @@ def elementToBe_Clickable(driver, element):
 # def wait_for_page_to_load(driver):
 #     wait = WebDriverWait(driver, TIMEOUT)
 #     wait.until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
+
+def wait_for_page_to_load(driver):
+    driver.execute_script("return document.readyState === 'complete';")

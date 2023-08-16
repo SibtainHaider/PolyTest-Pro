@@ -37,6 +37,12 @@ def verification_login(test, testfile):
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@when(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
+def when_click(button_name, testfile):
+    click(button_name, testfile)
+
+
+@allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
 def click(button_name, testfile):
     button_name_edit = methods.data_mod(button_name)
