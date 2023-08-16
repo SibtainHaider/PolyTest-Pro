@@ -12,9 +12,9 @@ def test_db():
     pass
 
 
-creation = path1 + '/Database_queries/creation.sql'
-insertion = path1 + '/Database_queries/insertion.sql'
-retrieval = path1 + '/Database_queries/retrieval.sql'
+creation = path1 + '/databaseQueries/creation.sql'
+insertion = path1 + '/databaseQueries/insertion.sql'
+retrieval = path1 + '/databaseQueries/retrieval.sql'
 DB_credentials = path1 + '/testData/DBcredentials.properties'
 
 

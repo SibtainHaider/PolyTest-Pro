@@ -19,7 +19,7 @@ def compare(value1, value2):
 
 
 def extract_variable(variable_name, file_name):
-    file = open(root_dir + "/Enumeration/{}.py".format(file_name), 'r')
+    file = open(root_dir + "/enumeration/{}.py".format(file_name), 'r')
     for line in file:
         line = line.split(' = ')
         line[0] = line[0].strip()

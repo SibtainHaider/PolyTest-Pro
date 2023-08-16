@@ -1,6 +1,6 @@
 import os
 from tests import methods
-from tests.UtilityFactory import waitUtilities
+from tests.utilityFactory import waitUtilities
 
 # import subprocess
 
@@ -10,8 +10,8 @@ from tests.UtilityFactory import waitUtilities
 current_script_path = os.path.abspath(__file__)
 root_dir = os.path.dirname(current_script_path)
 # formulating dynamic paths
-android_path = root_dir + '/Android/Capabilities.json'
 config_path = root_dir + '/config.properties'
+
 # getting data or values from config file that are essential for driver setup
 platform_source = methods.get_data(config_path, "platform", "source")
 appium_driver_url = methods.get_data(config_path, "platform", "appium_driver_url")
@@ -23,7 +23,7 @@ appium_platform_version = methods.get_data(config_path, "platform", "platform_ve
 
 # formulating dynamic paths
 apk_path = root_dir + '/APK/' + appium_apk_name
-json_file_path = root_dir + '/Android/Capabilities.json'
+json_file_path = root_dir + '/android/Capabilities.json'
 
 
 # initiating drivers based on the source condition in the config file
@@ -50,7 +50,7 @@ elif platform_source == "mobile":
     methods.json_data_assigning("appium:deviceName", appium_device_name, json_file_path)
     methods.json_data_assigning("appium:platformVersion", appium_platform_version, json_file_path)
     methods.json_data_assigning("platformName", appium_platform_name, json_file_path)
-    desired_cap = methods.json_data_get(android_path)
+    desired_cap = methods.json_data_get(json_file_path)
     driver = webdriver.Remote(appium_driver_url, desired_cap, proxy=None)
     # removing the values from the Capabilities after the driver is once initiated
     methods.json_data_removal("appium:app", json_file_path)
@@ -117,7 +117,7 @@ def switch_driver():
         methods.json_data_assigning("appium:deviceName", appium_device_name, json_file_path)
         methods.json_data_assigning("appium:platformVersion", appium_platform_version, json_file_path)
         methods.json_data_assigning("platformName", appium_platform_name, json_file_path)
-        desired_cap = methods.json_data_get(android_path)
+        desired_cap = methods.json_data_get(json_file_path)
         driver = webdriver.Remote(appium_driver_url, desired_cap, proxy=None)
         # removing the values from the Capabilities after the driver is once initiated
         methods.json_data_removal("appium:app", json_file_path)
