@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Aug 01 16:28:19 PKT 2023","Tue Aug 01 16:30:06 PKT 2023","106934","","test_web_steps","","","","test_sapphire","../features/sapphire_checkout.feature: Checking the purchase feature"
+"passed","Thu Aug 17 10:42:38 PKT 2023","Thu Aug 17 10:43:01 PKT 2023","22673","","test_sapphire_steps","","","","test_sapphire","../features/sapphire_checkout.feature: Checking the purchase feature"

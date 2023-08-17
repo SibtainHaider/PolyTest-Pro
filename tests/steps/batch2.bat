@@ -1,0 +1,2 @@
+@echo
+cmd /k "allure generate C:\Users\msibtain.haider\Desktop\Python_Automation1\tests\allure-results\20230817104232 --clean -o C:\Users\msibtain.haider\Desktop\Python_Automation1\tests\allure-report"

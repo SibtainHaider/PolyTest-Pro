@@ -7,9 +7,9 @@ set "datestamp=%YYYY%%MM%%DD%"
 set "timestamp=%HH%%Min%%Sec%"
 set "filename=%datestamp%%timestamp%"
 
-set "mainDirectory=C:\Users\msibtain.haider\Desktop\Python_Automation1\tests\allure-results"
+set "mainDirectory=%~dp0..\..\tests\allure-results"
 for /f "skip=4 delims=" %%A in ('dir /b /ad /o-n "%mainDirectory%\*"')  do (
     rd /s /q "%mainDirectory%\%%~A"
 )
 
-cmd /k pytest --alluredir=C:\Users\msibtain.haider\Desktop\Python_Automation1\tests\allure-results\%filename%
+cmd /k pytest --alluredir=%mainDirectory%\%filename%
