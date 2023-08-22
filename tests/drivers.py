@@ -15,7 +15,7 @@ config_path = root_dir + '/config.properties'
 # getting data or values from config file that are essential for driver setup
 platform_source = methods.get_data(config_path, "platform", "source")
 appium_driver_url = methods.get_data(config_path, "platform", "appium_driver_url")
-
+platform_sub_type = methods.get_data(config_path, "platform", "sub_type")
 appium_apk_name = methods.get_data(config_path, "platform", "apk_name")
 appium_device_name = methods.get_data(config_path, "platform", "android_device_name")
 appium_platform_name = methods.get_data(config_path, "platform", "platform_name")
@@ -42,11 +42,17 @@ if platform_source == "web":
             driver = webdriver.Chrome()
             driver.set_page_load_timeout(40)
             driver.maximize_window()
-elif platform_source == "mobile":
+elif platform_source == "mobile/desktop":
+    match platform_sub_type:
+        case "mobile":
+            methods.json_data_assigning("appium:app", apk_path, json_file_path)
+        case "desktop":
+            methods.json_data_assigning("appium:app", appium_apk_name, json_file_path)
+
     from appium import webdriver
     from appium.webdriver.common.appiumby import AppiumBy as By
     # dynamically adding the values to the Capabilities for initiating the driver with the correct Capabilities
-    methods.json_data_assigning("appium:app", apk_path, json_file_path)
+    methods.json_data_assigning("appium:app", appium_apk_name, json_file_path)
     methods.json_data_assigning("appium:deviceName", appium_device_name, json_file_path)
     methods.json_data_assigning("appium:platformVersion", appium_platform_version, json_file_path)
     methods.json_data_assigning("platformName", appium_platform_name, json_file_path)
@@ -60,7 +66,9 @@ elif platform_source == "mobile":
 
 
 def find_ele_xp(xpath):
-    waitUtilities.wait_for_page_to_load(driver)
+    match platform_source:
+        case "web":
+            waitUtilities.wait_for_page_to_load(driver)
     waitUtilities.elementToBe_Visible(driver, xpath)
     element = driver.find_element(By.XPATH, xpath)
     return element
@@ -95,7 +103,7 @@ def switch_driver():
     global driver
     driver.quit()
     platform = methods.get_data(config_path, "platform", "source")
-    if platform == "mobile":
+    if platform == "mobile/desktop":
         from selenium import webdriver
         from selenium.webdriver.common.by import By
         from selenium.webdriver.support.ui import Select
@@ -111,6 +119,12 @@ def switch_driver():
                 driver.maximize_window()
         methods.properties_file_updater(config_path, 'platform', 'source', 'web')
     elif platform == "web":
+        match platform_sub_type:
+            case "mobile":
+                methods.json_data_assigning("appium:app", apk_path, json_file_path)
+            case "desktop":
+                methods.json_data_assigning("appium:app", appium_apk_name, json_file_path)
+
         from appium import webdriver
         from appium.webdriver.common.appiumby import AppiumBy as By
         # dynamically adding the values to the Capabilities for initiating the driver with the correct Capabilities
@@ -125,4 +139,4 @@ def switch_driver():
         methods.json_data_removal("appium:deviceName", json_file_path)
         methods.json_data_removal("appium:platformVersion", json_file_path)
         methods.json_data_removal("platformName", json_file_path)
-        methods.properties_file_updater(config_path, 'platform', 'source', 'mobile')
+        methods.properties_file_updater(config_path, 'platform', 'source', 'mobile/desktop')

@@ -11,7 +11,7 @@ platform_source = methods.get_data(config_path, "platform", "source")
 
 if platform_source == "web":
     from selenium.webdriver.common.by import By
-elif platform_source == "mobile":
+elif platform_source == "mobile/desktop":
     from appium.webdriver.common.appiumby import AppiumBy as By
 
 
