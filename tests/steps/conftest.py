@@ -11,6 +11,8 @@ path1 = os.path.dirname(os.path.dirname(current_script_path))
 
 @allure.severity(allure.severity_level.NORMAL)
 @given(parsers.parse('User is on the "{web_name}" page on "{testfile}"'))
+@when(parsers.parse('User is on the "{web_name}" page on "{testfile}"'))
+@then(parsers.parse('User is on the "{web_name}" page on "{testfile}"'))
 def browser_navigation(web_name, testfile):
     web_name_edit = methods.data_mod(web_name)
     testfile_edit = methods.file_mod(testfile)
@@ -21,6 +23,8 @@ def browser_navigation(web_name, testfile):
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@given(parsers.parse('User is verified with "{test}" located on "{testfile}"'))
+@when(parsers.parse('User is verified with "{test}" located on "{testfile}"'))
 @then(parsers.parse('User is verified with "{test}" located on "{testfile}"'))
 def verification_login(test, testfile):
     data_edit = methods.data_mod(test)
@@ -37,12 +41,8 @@ def verification_login(test, testfile):
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@given(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
 @when(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
-def when_click(button_name, testfile):
-    click(button_name, testfile)
-
-
-@allure.severity(allure.severity_level.NORMAL)
 @then(parsers.parse('User Click on "{button_name}" on "{testfile}"'))
 def click(button_name, testfile):
     button_name_edit = methods.data_mod(button_name)
@@ -57,6 +57,8 @@ def click(button_name, testfile):
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@given("The browser switches window to child")
+@when("The browser switches window to child")
 @then("The browser switches window to child")
 def switch_tab_to_child():
     drivers.switch_to_child_window()
@@ -64,6 +66,8 @@ def switch_tab_to_child():
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@given("The browser switches window to parent")
+@when("The browser switches window to parent")
 @then("The browser switches window to parent")
 def switch_tab_to_parent():
     drivers.switch_to_parent_window()
@@ -71,6 +75,8 @@ def switch_tab_to_parent():
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@given(parsers.parse('User enter "{data}" in "{text_box}" on "{testfile}"'))
+@when(parsers.parse('User enter "{data}" in "{text_box}" on "{testfile}"'))
 @then(parsers.parse('User enter "{data}" in "{text_box}" on "{testfile}"'))
 def enter_credentials(data, text_box, testfile):
     data_edit = methods.data_mod(data)
@@ -89,6 +95,8 @@ def enter_credentials(data, text_box, testfile):
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@given(parsers.parse('User selects "{data}" on "{dropdown}" from "{testfile}"'))
+@when(parsers.parse('User selects "{data}" on "{dropdown}" from "{testfile}"'))
 @then(parsers.parse('User selects "{data}" on "{dropdown}" from "{testfile}"'))
 def select_dropdown(data, dropdown, testfile):
     data_edit = methods.data_mod(data)
@@ -105,6 +113,8 @@ def select_dropdown(data, dropdown, testfile):
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@given(parsers.parse('User scrolls to "{element}" on "{testfile}"'))
+@when(parsers.parse('User scrolls to "{element}" on "{testfile}"'))
 @then(parsers.parse('User scrolls to "{element}" on "{testfile}"'))
 def scroll_to_web_element(element, testfile):
     element_edit = methods.data_mod(element)
@@ -119,6 +129,8 @@ def scroll_to_web_element(element, testfile):
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@given(parsers.parse('User scrolls with "{x1}", "{y1}" to "{x2}", "{y2}" "{number}" times'))
+@when(parsers.parse('User scrolls with "{x1}", "{y1}" to "{x2}", "{y2}" "{number}" times'))
 @then(parsers.parse('User scrolls with "{x1}", "{y1}" to "{x2}", "{y2}" "{number}" times'))
 def scroll_to_app_element(x1, y1, x2, y2, number, path):
     x1_get = methods.get_data(path, 'details', x1)
@@ -133,6 +145,8 @@ def scroll_to_app_element(x1, y1, x2, y2, number, path):
 
 
 @allure.severity(allure.severity_level.NORMAL)
+@given("User switches the driver")
+@when("User switches the driver")
 @then("User switches the driver")
 def Switch_driver():
     drivers.switch_driver()
