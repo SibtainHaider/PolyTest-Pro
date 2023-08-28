@@ -1,4 +1,4 @@
-# Python_Automation1
+# Python_Automation(PYTEST-BDD)
 The pre-requisites of this projects are :
 1. Intellij Ultimate Version or Pycharm Professional Version
 2. Python
